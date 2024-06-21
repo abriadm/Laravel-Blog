@@ -23,10 +23,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // User::factory()->create([
-        //     'name' => 'Giveonaldo',
-        //     'email' => 'giveon@mail.com',
-        // ]);
+        User::factory()->create([
+            'name' => 'Giveonaldo',
+            'username' => 'aldo',
+            'email' => 'giveon@mail.com',
+        ]);
+        
         User::factory(5)->create();
 
         Category::create([

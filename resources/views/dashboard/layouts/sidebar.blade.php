@@ -17,5 +17,16 @@
                 </a>
             </li>
         </ul>
+
+        <h1 class="text-gray-900 text-xl dark:text-slate-300 px-3 mt-8 font-semibold text-underline">Administrator</h1>
+
+        <ul class="space-y-2 mt-2 font-medium">
+            <li>
+                <a href="/dashboard/categories"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <span class="ms-3">Category</span>
+                </a>
+            </li>
+        </ul>
     </div>
 </aside>

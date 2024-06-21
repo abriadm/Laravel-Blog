@@ -8,7 +8,7 @@
             @if (request('category'))
                 <input type="hidden" name="category" value="{{ request('category') }}">
             @endif
-            
+
             @if (request('author'))
                 <input type="hidden" name="author" value="{{ request('author') }}">
             @endif
@@ -34,8 +34,13 @@
             <div
                 class="relative w-2/5 m-0 overflow-hidden text-gray-700 bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
                 <a href="/posts/{{ $posts[0]->slug }}">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80"
-                        alt="card-image" class="object-cover w-full h-full" />
+                    @if ($posts[0]->image)
+                        <img src="{{ asset('storage/' . $posts[0]->image) }}" alt="{{ $posts[0]->slug }}"
+                            class="object-cover w-full h-[20rem]" />
+                    @else
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80"
+                            alt="card-image" class="object-cover w-full h-full" />
+                    @endif
                 </a>
             </div>
             <div class="p-6">
@@ -75,8 +80,13 @@
                     <div
                         class="relative m-0 overflow-hidden text-gray-700 bg-transparent rounded-none shadow-none bg-clip-border">
                         <a href="/posts/{{ $post->slug }}">
-                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80"
-                                alt="ui/ux review check" />
+                            @if ($post->image)
+                                <img src="{{ asset('storage/' . $post->image) }}"
+                                    alt="{{ $post->title }}" class="h-[20rem] w-full object-cover"/>
+                            @else
+                                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80"
+                                    alt="ui/ux review check" />
+                            @endif
                         </a>
                     </div>
                     <div class="p-6">
@@ -84,7 +94,7 @@
                             class="block font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
                             {{ $post->title }}
                         </a>
-                        <p class="block mt-3 font-sans text-xl antialiased font-normal leading-relaxed text-gray-700">
+                        <p class="block mt-3 text-wrap font-sans text-xl antialiased font-normal leading-relaxed text-gray-700">
                             {{ $post->excerpt }}
                         </p>
                     </div>

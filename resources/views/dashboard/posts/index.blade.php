@@ -4,7 +4,7 @@
     <div class="flex justify-between">
         <h1 class="text-3xl font-semibold mb-2">My Post</h1>
         <a href="/dashboard/posts/create"
-            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Create
+            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Create
             new Post</a>
     </div>
     <hr class="mb-4" />
@@ -43,8 +43,12 @@
                         <td class="flex px-6 py-4 gap-x-4">
                             <a href="/dashboard/posts/{{ $post->slug }}"
                                 class="font-medium text-orange-600 dark:text-orange-300 hover:underline">View</a>
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
+                            <a href="/dashboard/posts/{{ $post->slug }}/edit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <form action="/dashboard/posts/{{ $post->slug }}" method="POST">
+                                @method('delete')
+                                @csrf
+                                <button onclick="return confirm('Are u sure?')" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
