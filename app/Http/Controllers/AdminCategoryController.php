@@ -21,7 +21,7 @@ class AdminCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.categories.create');
     }
 
     /**
@@ -29,7 +29,14 @@ class AdminCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required|unique:categories|max:255',
+            'slug' => 'required|unique:categories|max:255',
+        ]);
+
+        Category::create($validateData);
+
+        return redirect('/dashboard/categories');
     }
 
     /**
@@ -61,6 +68,12 @@ class AdminCategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        if ($category->posts()->count() > 0){
+            return redirect('/dashboard/categories')->with('error', 'Category cannot be deleted because it has associated posts.');
+        }
+
+        $category->delete();
+        
+        return redirect('/dashboard/categories')->with('success', 'Category deleted successfully.');
     }
 }

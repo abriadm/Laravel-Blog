@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,14 +13,14 @@ class PostController extends Controller
     public function index()
     {
         $active = "posts";
-        
+
         $title = '';
-        if(request('category')) {
+        if (request('category')) {
             $category = Category::firstWhere('slug', request('category'));
             $title = ' in ' . $category->name;
         }
 
-        if(request('author')) {
+        if (request('author')) {
             $author = User::firstWhere('username', request('author'));
             $title = ' By ' . $author->name;
         }
@@ -36,6 +37,8 @@ class PostController extends Controller
     {
         $title = 'Single Post';
         $active = 'posts';
-        return view('post',compact('title', 'post', 'active'));
+
+        $comments = $post->comments()->with('user')->orderBy('created_at', 'desc')->get();
+        return view('post', compact('title', 'post', 'active', 'comments'));
     }
 }

@@ -34,8 +34,11 @@
                     <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10 hidden"
                         role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                         <div class="py-1" role="none">
-                            <a href="{{ route('dashboard') }}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
-                                role="menuitem" tabindex="-1" id="menu-item-0">Dashboard</a>
+                            @can('admin')
+                                <a href="{{ route('dashboard') }}"
+                                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem"
+                                    tabindex="-1" id="menu-item-0">Dashboard</a>
+                            @endcan
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"
@@ -58,7 +61,7 @@
         var button = document.querySelector('#menu-button');
         var menu = document.querySelector(
             '.origin-top-right.absolute.right-0.mt-2.w-56.rounded-md.shadow-lg.bg-white.ring-1.ring-black.ring-opacity-5.focus\\:outline-none'
-            );
+        );
 
         if (button && button.contains(event.target)) {
             menu.classList.toggle('hidden');

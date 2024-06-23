@@ -9,7 +9,11 @@
         </a>
     </div>
     <hr class="mb-4" />
-
+    @if (session('error'))
+        <p class="text-sm mb-2 text-red-500">
+            {{ session('error') }}
+        </p>
+    @endif
     <div class="overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -36,13 +40,11 @@
                             {{ $category->posts_count }}
                         </td>
                         <td class="flex px-6 py-4 gap-x-4">
-                            <a href="/dashboard/categories/{{ $category->id }}"
-                                class="font-medium text-orange-600 dark:text-orange-300 hover:underline">View</a>
-                            <a href="/dashboard/categories/{{ $category->id }}/edit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                             <form action="/dashboard/categories/{{ $category->id }}" method="POST">
                                 @method('delete')
                                 @csrf
-                                <button onclick="return confirm('Are u sure?')" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
+                                <button onclick="return confirm('Are u sure?')"
+                                    class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
                             </form>
                         </td>
                     </tr>
