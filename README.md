@@ -25,3 +25,5 @@ interaksi antar penggunanya
 - Post CRUD (Admin Only)
 - Comment CRD (User Only)
 - Category CRUD (Admin Only)
+- Dark Mode
+- preview image (Ketika buat post)
