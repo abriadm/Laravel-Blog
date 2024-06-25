@@ -8,7 +8,7 @@
     <title>{{ $title }}</title>
 </head>
 
-<body>
+<body class="bg-[#FDFFD2] dark:bg-[#32012F] text-black dark:text-white">
 
     @include('partials.navbar')
 

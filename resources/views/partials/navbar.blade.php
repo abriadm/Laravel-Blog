@@ -1,22 +1,22 @@
-<header class="bg-[#FFF6E9]">
-    <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+<header class="bg-[#FFF6E9] dark:bg-slate-800 dark:shadow-xl">
+    <nav class="mx-auto flex max-w-7xl items-center justify-around md:justify-between p-6 lg:px-8" aria-label="Global">
         <div class="flex lg:flex-1">
-            <a href="#" class="-m-1.5 p-1.5">
+            <a href="/" class="-m-1.5 p-1.5">
                 <span class="sr-only">Your Company</span>
                 <img class="h-8 w-auto" src="/assets/favicon-1.png" alt="">
             </a>
         </div>
-        <div class="flex flex-1 gap-x-12">
+        <div class="flex md:flex-1 gap-x-12">
             <a href="/"
-                class="text-sm font-semibold leading-6 text-gray-900 {{ $active === 'home' ? 'bg-gray-600 text-white px-2 rounded-lg' : '' }}">Home</a>
+                class="text-sm font-semibold leading-6 text-gray-900 dark:text-white {{ $active === 'home' ? 'bg-gray-600 dark:bg-indigo-600 text-white px-3 rounded-lg' : '' }}">Home</a>
             <a href="/posts"
-                class="text-sm font-semibold leading-6 text-gray-900 {{ $active === 'posts' ? 'bg-gray-600 text-white px-2 rounded-lg' : '' }}">Blog</a>
+                class="text-sm font-semibold leading-6 text-gray-900 dark:text-white {{ $active === 'posts' ? 'bg-gray-600 dark:bg-indigo-600 text-white px-3 rounded-lg' : '' }}">Blog</a>
             <a href="/about"
-                class="text-sm font-semibold leading-6 text-gray-900 {{ $active === 'about' ? 'bg-gray-600 text-white px-2 rounded-lg' : '' }}">About</a>
+                class="text-sm font-semibold leading-6 text-gray-900 dark:text-white {{ $active === 'about' ? 'bg-gray-600 dark:bg-indigo-600 text-white px-3 rounded-lg' : '' }}">About</a>
             <a href="/categories"
-                class="text-sm font-semibold leading-6 text-gray-900 {{ $active === 'categories' ? 'bg-gray-600 text-white px-2 rounded-lg' : '' }}">Categories</a>
+                class="text-sm font-semibold leading-6 text-gray-900 dark:text-white {{ $active === 'categories' ? 'bg-gray-600 dark:bg-indigo-600 text-white px-3 rounded-lg' : '' }}">Categories</a>
         </div>
-        <div class="flex flex-2">
+        <div class="flex md:flex-2">
             @auth
                 <div class="relative inline-block text-left">
                     <button type="button"
@@ -49,7 +49,7 @@
                     </div>
                 </div>
             @else
-                <a class="text-sm font-semibold hover:text-blue-700" href="/login">Login</a>
+                <a class="text-sm font-bold dark:text-indigo-500 hover:text-white" href="/login">Login</a>
             @endauth
         </div>
     </nav>

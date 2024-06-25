@@ -4,7 +4,7 @@
     <h1 class="text-2xl font-bold">About Author</h1>
     <hr class="w-[10rem] mt-2 mb-4" />
 
-    <div class="w-[60rem] rounded-xl h-fit border-2 flex p-5">
+    <div class="w-[60rem] bg-[#E2DFD0] dark:bg-[#0C0C0C] shadow-xl rounded-xl h-fit border-2 flex p-5">
         <img class="w-[9rem] h-[9rem] rounded-full object-cover" src="/assets/tama.jpg" alt="Tama">
         <div class="ml-5 flex flex-col mr-6">
             <h1 class="font-semibold text-xl">Atama Cahya El-Firdausy</h1>

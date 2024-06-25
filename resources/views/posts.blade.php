@@ -73,12 +73,12 @@
         </div>
 
         {{-- Card --}}
-        <div class="flex flex-wrap justify-between my-8 gap-y-12 gap-x-8">
+        <div class="flex w-full flex-wrap my-8 gap-y-12 justify-between">
             @foreach ($posts->skip(1) as $post)
                 <div
-                    class="relative flex max-w-[34rem] flex-col overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                    class="relative w-[25rem] h-fit flex flex-col overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                     <div
-                        class="relative m-0 overflow-hidden text-gray-700 bg-transparent rounded-none shadow-none bg-clip-border">
+                        class="relative overflow-hidden text-gray-700 bg-transparent rounded-none shadow-none bg-clip-border">
                         <a href="/posts/{{ $post->slug }}">
                             @if ($post->image)
                                 <img src="{{ asset('storage/' . $post->image) }}"
@@ -92,10 +92,10 @@
                     <div class="p-6">
                         <a href="/posts/{{ $post->slug }}"
                             class="block font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-                            {{ $post->title }}
+                            {!! Str::limit($post->title, 20) !!}
                         </a>
                         <p class="block mt-3 text-wrap font-sans text-xl antialiased font-normal leading-relaxed text-gray-700">
-                            {{ $post->excerpt }}
+                            {!! Str::limit($post->body, 100) !!}
                         </p>
                     </div>
                     <div class="flex items-center justify-between p-6">
