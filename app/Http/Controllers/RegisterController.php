@@ -17,6 +17,7 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
+        // Validasi data
         $validate = $request->validate([
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users',
@@ -24,9 +25,16 @@ class RegisterController extends Controller
             'password' => 'required|min:5',
         ]);
 
+        // Hash password
         $validate['password'] = Hash::make($validate['password']);
-        User::create($validate);
 
-        return redirect('/login')->with('success', 'Silahkan Login');
+        // buat user
+        $user = User::create($validate);
+
+        $user->sendEmailVerificationNotification();
+
+        return redirect('/login')->with('success', 'Silahkan Login, verifikasi dulu bossque!!');
+
+        // return view('emailVerify.index');
     }
 }

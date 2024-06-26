@@ -9,6 +9,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,8 +58,8 @@ Route::get('/categories', function() {
 });
 
 // Route Comments
-Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store')->middleware('auth');
-Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy')->middleware('auth');
+Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store')->middleware(['auth', 'verified']);
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy')->middleware(['auth', 'verified']);
 
 // Login and Register Form
 Route::get('/login', [LoginController::class, 'index']);
@@ -77,3 +78,8 @@ Route::resource('/dashboard/posts', DashboardPostController::class)->middleware(
 Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
 
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
+
+// Email verification
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
+Route::get('/email/verify', [VerificationController::class, 'notice'])->middleware('auth')->name('verification.notice');
+Route::post('/email/resend', [VerificationController::class, 'resend'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
