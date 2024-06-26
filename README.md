@@ -27,3 +27,4 @@ interaksi antar penggunanya
 - Category CRUD (Admin Only)
 - Dark Mode
 - preview image (Ketika buat post)
+- Email Verification (Ketika user blm terverifikasi, user tidak dapat berkomentar)
