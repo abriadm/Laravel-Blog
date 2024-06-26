@@ -76,7 +76,7 @@
         <div class="flex w-full flex-wrap my-8 gap-y-12 justify-between">
             @foreach ($posts->skip(1) as $post)
                 <div
-                    class="relative w-[25rem] h-fit flex flex-col overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                    class="relative w-[30rem] h-fit flex flex-col overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                     <div
                         class="relative overflow-hidden text-gray-700 bg-transparent rounded-none shadow-none bg-clip-border">
                         <a href="/posts/{{ $post->slug }}">
