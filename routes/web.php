@@ -11,6 +11,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\ShowCategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,9 @@ Route::get('/categories', function () {
         'categories' => Category::all(),
     ]);
 });
+
+// invokable controller
+Route::get('/categories/invoke', ShowCategoriesController::class)->name('categories.index');
 
 // Route Comments
 Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store')->middleware(['auth', 'verified']);
