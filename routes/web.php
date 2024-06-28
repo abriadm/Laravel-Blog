@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -7,9 +8,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardPostController;
-use App\Http\Controllers\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,12 @@ use App\Http\Controllers\VerificationController;
 */
 
 Route::get('/', function () {
-    return view('home', ['active' => 'home', 'title' => 'HomePage']);
+    return view('posts', [
+        'active' => 'posts',
+        'title' => 'HomePage',
+        'posts' => Post::latest()->filter(request(['search', 'category', 'author']))
+            ->paginate(5)->withQueryString(),
+    ]);
 });
 
 Route::get('/about', function () {
@@ -49,7 +55,7 @@ Route::get('/category/{category:slug}', function (Category $category) {
     ]);
 });
 
-Route::get('/categories', function() {
+Route::get('/categories', function () {
     return view('categories', [
         'title' => 'List Categories',
         'active' => 'categories',
@@ -65,18 +71,19 @@ Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->nam
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
-
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
 // Dashboard Panel
-Route::get('/dashboard', function() {
+Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->name('dashboard')->middleware('admin');
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
+// Show User in Dashboard
+Route::get('dashboard/users', [DashboardPostController::class, 'showUser'])->middleware('auth', 'admin')->name('users');
+Route::delete('/dasboard/{user}', [DashboardPostController::class, 'deleteUser'])->middleware('auth', 'admin')->name('delete.user');
 Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
-
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
 
 // Email verification

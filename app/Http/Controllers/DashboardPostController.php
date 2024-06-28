@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -18,6 +19,20 @@ class DashboardPostController extends Controller
     {
         $posts = Post::where('user_id', auth()->user()->id)->get();
         return view('dashboard.posts.index', compact('posts'));
+    }
+
+    // Display User
+    public function showUser()
+    {
+        $users = User::where('is_admin', false)->get();
+        return view('dashboard.user.index', compact('users'));
+    }
+
+    // Delete user
+    public function deleteUser(User $user)
+    {
+        $user->delete();
+        return redirect()->back();
     }
 
     /**

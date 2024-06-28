@@ -8,9 +8,7 @@
         </div>
         <div class="flex md:flex-1 gap-x-12">
             <a href="/"
-                class="text-sm font-semibold leading-6 text-gray-900 dark:text-white {{ $active === 'home' ? 'bg-gray-600 dark:bg-indigo-600 text-white px-3 rounded-lg' : '' }}">Home</a>
-            <a href="/posts"
-                class="text-sm font-semibold leading-6 text-gray-900 dark:text-white {{ $active === 'posts' ? 'bg-gray-600 dark:bg-indigo-600 text-white px-3 rounded-lg' : '' }}">Blog</a>
+                class="text-sm font-semibold leading-6 text-gray-900 dark:text-white {{ $active === 'posts' ? 'bg-gray-600 dark:bg-indigo-600 text-white px-3 rounded-lg' : '' }}">Home</a>
             <a href="/about"
                 class="text-sm font-semibold leading-6 text-gray-900 dark:text-white {{ $active === 'about' ? 'bg-gray-600 dark:bg-indigo-600 text-white px-3 rounded-lg' : '' }}">About</a>
             <a href="/categories"
