@@ -72,7 +72,7 @@ Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name
 Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy')->middleware(['auth', 'verified']);
 
 // Login and Register Form
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])-> middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
